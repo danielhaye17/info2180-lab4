@@ -1,4 +1,3 @@
-
 let lose = false;
 let commence = false;
 window.onload = function(){
@@ -8,11 +7,22 @@ window.onload = function(){
     }
     document.getElementById("end").addEventListener("mouseover",game_result);
     document.getElementById("start").addEventListener("click",start_game);
+    maze = document.getElementById("maze");
+	maze.addEventListener("mouseleave", function() {
+		x = 0;
+		while(x < wall_Colour.length){
+			document.getElementById("status").innerHTML = "You Cheated, stay in boundary :(";
+			
+			wall_Colour[x].setAttribute("class","boundary youlose");
+			x++;
+		}
+	});
 }
 
 function end_game(){
     if(commence){
         setBoundaryCSS("boundary youlose");
+        setStat("You Lose!");
         lose = true;
     }
 }
